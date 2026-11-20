@@ -62,17 +62,22 @@ function getDateAndTime() {
 // ========== Seed Admin User ==========
 const seedAdminUser = async () => {
   try {
-    const adminEmail = "admin@pizza.com";
+    const adminEmail = process.env.ADMIN_EMAIL;
+    const adminPassword = process.env.ADMIN_PASSWORD;
+    if (!adminEmail || !adminPassword) {
+      console.log("ℹ️ ADMIN_EMAIL / ADMIN_PASSWORD not set; skipping admin seed");
+      return;
+    }
     const existingAdmin = await User.findOne({ email: adminEmail });
     
     if (!existingAdmin) {
-      const hashedPassword = await bcrypt.hash("Admin@123", 10);
+      const hashedPassword = await bcrypt.hash(adminPassword, 10);
       await User.create({ 
         email: adminEmail,
         password: hashedPassword,
         isAdmin: true
       });
-      console.log("✅ Admin user created: admin@pizza.com / Admin@123");
+      console.log("✅ Admin user created:", adminEmail);
     }
   } catch (error) {
     console.error("Seed admin error:", error.message);
