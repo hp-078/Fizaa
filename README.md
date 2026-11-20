@@ -23,18 +23,41 @@
 
 ---
 
-## 🚀 Live Link
+## 🚀 Live Links
 
-🔗 [fizza-app.vercel.app](https://fizza-app.vercel.app)
+- 🌐 Frontend (Vercel): https://fizaa.vercel.app
+- ⚙️ Backend API (Render): https://fizza-api-vvpo.onrender.com
+
+> The backend runs on Render's free tier, so the first request after idle time can take about a minute.
+
+---
+
+## 💻 Run Locally
+
+```bash
+# backend
+cd backend
+cp .env.example .env     # set MONGODB_URI and JWT_SECRET
+npm install
+npm run dev
+
+# frontend (new terminal)
+cd frontend
+cp .env.example .env     # VITE_API_URL=http://localhost:5000
+npm install
+npm run dev
+```
+
+## ☁️ Deployment
+
+- **Database:** MongoDB Atlas
+- **Backend:** Render (`render.yaml`). Set `MONGODB_URI` and `JWT_SECRET` as environment variables in the Render dashboard.
+- **Frontend:** Vercel. Set `VITE_API_URL` to the Render backend URL.
+
+Secrets are never stored in the repository. Use the `.env.example` files as templates.
 
 ---
 
-## 🧪 Test Credentials
+## 🙏 Credits
 
-### 🔐 Admin Login
-- **Email**: `admin@gmail.com`  
-- **Password**: `admin`
-
-You can also register as a new user to test the user-side experience.
-
----
+Based on the original open-source project [pizza-app](https://github.com/DobariyaHarsh/pizza-app) by DobariyaHarsh. This fork adds environment-based configuration and a separate deployment setup.
